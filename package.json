@@ -1,0 +1,28 @@
+{
+  "name": "job-board-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body": "^5.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.1.1",
+    "nodemon": "^2.0.15",
+    "parser": "^0.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenbonikko/5610_Job_Board_API.git"
+  },
+  "keywords": [],
+  "author": "Bo Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenbonikko/5610_Job_Board_API/issues"
+  },
+  "homepage": "https://github.com/chenbonikko/5610_Job_Board_API#readme"
+}
