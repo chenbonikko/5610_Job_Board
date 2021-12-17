@@ -13,7 +13,7 @@ mongoose.Promise = global.Promise
 app.use(bodyParser.json())
 
 // init routes
-app.use('/api', require('./routes/api'))
+app.use('/job', require('./routes/job'))
 
 // Error handling
 app.use(function (err, req, res, next) {
