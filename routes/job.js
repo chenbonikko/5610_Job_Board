@@ -33,7 +33,7 @@ router.post('/', auth_middleware, (request, response) => {
     if(!job.title || !job.description || !job.location || !job.companyName) {
       return response.status(422).send("Missing data");
     }
-    pokemon.owner = request.username;
+    //pokemon.owner = request.username;
   
     JobAccessor.insertjob(request.body)
       .then(jobResponse => response.status(200).send(jobResponse))
