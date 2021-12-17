@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 
 
 // init the app
@@ -14,7 +15,10 @@ app.use(bodyParser.json())
 
 // init routes
 app.use('/job', require('./routes/job'))
+app.use('/user', require('./routes/user'))
 
+
+app.use(session({secret: process.env.SUPER_SECRET}));
 // Error handling
 app.use(function (err, req, res, next) {
     res.status(422).send({error: err.message})

@@ -1,7 +1,7 @@
 const { response } = require('express');
 const express = require('express');
 const router = express.Router();
-const UserModel = require('./models/User.Model');
+const UserModel = require('./models/Users.Model');
 const jwt = require('jsonwebtoken');
 const auth_middleware = require('./auth_middleware.js')
 
@@ -137,6 +137,7 @@ router.post('/', function(req, res) {
 
     return UserModel.insertUser({username: username, password: password})
         .then((userResponse) => {
+            console.log(req.session);
             req.session.username = username;
 
             //return response.cookie('huntersCookie', token, {httpOnly: true})
@@ -151,4 +152,4 @@ router.post('/logout', function(req, res) {
     return res.send("Ok");
 })
 
-module.exports = router;
+module.exports = router
