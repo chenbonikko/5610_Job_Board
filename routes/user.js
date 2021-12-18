@@ -56,7 +56,7 @@ router.get('/:username', (request, response) => {
 
 router.post('/authenticate', function(request, response) {
     let { username, password } = request.body;
-    password = JSON.stringify(password);
+    //password = JSON.stringify(password);
     console.log(password);
     if (!username || !password) {
         return response.status(422).send('Must include both password and username');
@@ -149,6 +149,11 @@ router.post('/', function(req, res) {
 router.post('/logout', function(req, res) {
     req.session.destroy()
     return res.send("Ok");
+})
+
+router.put('/putFav', function (req, res) {
+     UserModel.favorite(req.username, req.jobId);
+     return res.send("ok")
 })
 
 module.exports = router

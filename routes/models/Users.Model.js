@@ -40,11 +40,18 @@ function findUserByUsername(username) {
     // })
     return UserModel.findOne({username}).exec();
     // { username: username }
+
+
 }
+
+function favorite(username, jobId) {
+    return UserModel.findOneAndUpdate({ username: username }, { $addToSet: { favorites: jobId } });
+    }
 
 // Make sure to export a function after you create it!
 module.exports = {
     insertUser,
     getAllUsers,
     findUserByUsername,
+    favorite
 };
