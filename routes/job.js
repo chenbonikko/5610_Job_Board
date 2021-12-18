@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const match = require('nodemon/lib/monitor/match');
 const auth_middleware = require('./auth_middleware');
 const router = express.Router()
 const JobAccessor = require('./models/Jobs.Model');
@@ -12,19 +13,31 @@ router.get('/', function(request, response, next) {
 
 
 
-//get one job
+//get one job by id
 
-router.get('/:id', auth_middleware, function(request, response) {
-    return JobAccessor.findJobByTitle(request.title)
-    .then(jobResponse => response.status(200).send(jobResponse))
-    .catch(error => response.status(400).send(error))
+// router.get('/:id', function(request, response) {
+//     return JobAccessor.findJobByTitle(request.title)
+//     .then(jobResponse => response.status(200).send(jobResponse))
+//     .catch(error => response.status(400).send(error))
     
-  })
-// router.get('/jobs/:id', function(req, res, next) {
-//     Job.findOne({_id: req.params.id}).then(function (job) {
-//         res.send(job)
-//     }).catch(next)
-// })
+//   })
+router.get('/:id', function(req, res, next) {
+    JobAccessor.findJobById(req.params.id).then(function (job) {
+        res.send(job)
+    }).catch(next)
+})
+
+// get one job by title
+router.get('/get_matched_jobs', function(req, res, next) {
+    // return JobAccessor.findJobByTitle(req.body.title)
+    // .then(jobResponse => response.status(200).send(jobResponse))
+    // .catch(error => response.status(400).send(error))
+    
+    JobAccessor.findJobByTitle(req.body.title).then(function (job) {
+        res.send(job)
+    }).catch(next)
+})
+
 
 
 // add new job
@@ -48,10 +61,10 @@ router.post('/', auth_middleware, (request, response) => {
 
 
 // update job
-router.put('/:id', auth_middleware ,function(req, res, next){
-    Job.findByIdAndUpdate({_id: req.params.id}, req.body)
+router.put('/:id', auth_middleware, function(req, res, next){
+    JobAccessor.findByIdAndUpdate(req.params.id, req.body)
     .then(function () {
-        Job.findOne({_id: req.params.id}).then(function (job) {
+        JobAccessor.findJobById(req.params.id).then(function (job) {
             res.send(job)
         })
     }).catch(next)
@@ -59,8 +72,8 @@ router.put('/:id', auth_middleware ,function(req, res, next){
 
 
 // delete job
-router.delete('/:id', auth_middleware ,function(req, res, next){
-    Job.findByIdAndRemove({_id: req.params.id})
+router.delete('/:id' ,function(req, res, next){
+    JobAccessor.findByIdAndRemove(req.params.id)
     .then(function (job) {
         res.send(job)
     }).catch(next)

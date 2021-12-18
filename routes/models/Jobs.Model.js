@@ -12,21 +12,33 @@ function getAllJob() {
 }
 
 function findJobByTitle(title) {
-    return JobModel.find({title: title}).exec();
+    return JobModel.findBytitle(title).exec();
 }
 
-function findPokemonById(id) {
+function findJobById(id) {
     return JobModel.findById(id).exec();
 }
 
+function findByIdAndRemove(id) {
+    return JobModel.findByIdAndRemove(id).exec();
+}
 
+function findByIdAndUpdate(id, body) {
+    return JobModel.findByIdAndUpdate(id, body).exec();
+}
 
+function findOne(id) {
+    return JobModel.findOne(id).exec();
+}
 // Make sure to export a function after you create it!
 module.exports = {
     insertjob,
     findJobByTitle,
     getAllJob,
-    findPokemonById
+    findJobById,
+    findByIdAndRemove,
+    findByIdAndUpdate,
+    findOne
 };
 
 

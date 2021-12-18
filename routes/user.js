@@ -137,7 +137,6 @@ router.post('/', function(req, res) {
 
     return UserModel.insertUser({username: username, password: password})
         .then((userResponse) => {
-            console.log(req.session);
             req.session.username = username;
 
             //return response.cookie('huntersCookie', token, {httpOnly: true})
