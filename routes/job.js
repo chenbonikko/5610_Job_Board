@@ -21,7 +21,7 @@ router.get('/', function(request, response, next) {
 //     .catch(error => response.status(400).send(error))
     
 //   })
-router.get('/:id', function(req, res, next) {
+router.get('/getById/:id', function(req, res, next) {
     JobAccessor.findJobById(req.params.id).then(function (job) {
         res.send(job)
     }).catch(next)
@@ -33,7 +33,7 @@ router.get('/get_matched_jobs', function(req, res, next) {
     // .then(jobResponse => response.status(200).send(jobResponse))
     // .catch(error => response.status(400).send(error))
     
-    JobAccessor.findJobByTitle(req.body.title).then(function (job) {
+    JobAccessor.findJobByTitle(req.query.title).then(function (job) {
         res.send(job)
     }).catch(next)
 })
@@ -78,5 +78,7 @@ router.delete('/:id' ,function(req, res, next){
         res.send(job)
     }).catch(next)
 })
+
+
 
 module.exports = router;

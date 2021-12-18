@@ -1,6 +1,8 @@
 const mongoose = require("mongoose")
 const JobSchema = require('../schema/job.Schema').JobSchema
 
+
+
 const JobModel = mongoose.model("Job", JobSchema);
 
 function insertjob(job) {
@@ -12,7 +14,7 @@ function getAllJob() {
 }
 
 function findJobByTitle(title) {
-    return JobModel.findBytitle(title).exec();
+    return JobModel.find({"title": title}).exec();
 }
 
 function findJobById(id) {
@@ -30,6 +32,8 @@ function findByIdAndUpdate(id, body) {
 function findOne(id) {
     return JobModel.findOne(id).exec();
 }
+
+
 // Make sure to export a function after you create it!
 module.exports = {
     insertjob,
