@@ -45,7 +45,7 @@ function findUserByUsername(username) {
 }
 
 function favorite(username, jobId) {
-    return UserModel.findOneAndUpdate({ username: username }, { $addToSet: { favorites: jobId } });
+    return UserModel.findOneAndUpdate({ username: username }, { $addToSet: { favorites: jobId } }).exec();
     }
 
 // Make sure to export a function after you create it!
